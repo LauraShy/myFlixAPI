@@ -4,6 +4,21 @@
         <meta charset="utf-8">
         <title>myFlix</title>
         <!-- <link href="css/styles.css" rel="stylesheet" type="text/css" /> -->
+        <style>
+            body{
+                font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            }
+            th,td{
+                padding:15px;
+                text-align: left;
+                border: 1px solid rgb(14, 13, 13);
+            }
+            th{
+                background-color: rgb(126, 157, 182);
+            }
+            tr:hover {background-color: #f1efef;}
+           
+        </style>
     </head>
     <body>
         <h1>myFlix: a Movie API Application</h1>
@@ -20,7 +35,7 @@
         <h3>Essential Features:</h3>
         <ul>
             <li>Return a list of ALL movies to the user</li>
-            <li>Return data (description, genre, director, image URL, whether it’s featured or not) about asingle movie by title to the user</li>
+            <li>Return data (description, genre, director, image URL, whether it’s featured or not) about a single movie by title to the user</li>
             <li>Return data about a genre (description) by name/title (e.g., “Thriller”)</li>
             <li>Return data about a director (bio, birth year, death year) by name</li>
             <li>Allow new users to register</li>
@@ -29,5 +44,99 @@
             <li>Allow users to remove a movie from their list of favorites</li>
             <li>Allow existing users to deregister</li>
         </ul>
+        <table>
+            <h3 class="endpoint-table">Endpoint Documentation:</h3>
+            <thead>
+                <tr>
+                    <th scope="col">Description</th>
+                    <th scope="col">Method</th>
+                    <th scope="col">URL</th>
+                    <th scope="col">Query Parameter</th>
+                    <th scope="col">Body of Request</th>
+                    <th scope="col">Body of Response</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td scope="row">Allow new users to register</td>
+                    <td>POST</td>
+                    <td>/users</td>
+                    <td>none</td>
+                    <td>A JSON object holding data about the user to register</td>
+                    <td>A JSON object containing data about the user that was registered</td>
+                </tr>
+                <tr>
+                    <td scope="row">Allow users to update their user info </td>
+                    <td>PUT</td>
+                    <td>/users/:username</td>
+                    <td>username</td>
+                    <td>A JSON object holding the new data about the user to register</td>
+                    <td>A text message indicating the user info was successfully updated</td>
+                </tr>
+                <tr>
+                    <td scope="row">Allow existing users to deregister</td>
+                    <td>DELETE</td>
+                    <td>/users/:username</td>
+                    <td>username</td>
+                    <td>none</td>
+                    <td>A text message indicating the user was successfully deregistered</td>
+                </tr>
+                <tr>
+                    <td scope="row">Return a list of all the movies to the users</td>
+                    <td>GET</td>
+                    <td>/movies</td>
+                    <td>none</td>
+                    <td>none</td>
+                    <td>A JSON object containing data about all the movies</td>
+                </tr>
+                <tr>
+                    <td scope="row">Return data about a single movie by title to the user</td>
+                    <td>GET</td>
+                    <td>/movies/:title</td>
+                    <td>title</td>
+                    <td>none</td>
+                    <td>A JSON object containing data (description, genre, director, image URL, whether it’s featured or not) about the movie</td>
+                </tr>
+                <tr>
+                    <td scope="row">Return data about a genre (description) by name/title</td>
+                    <td>GET</td>
+                    <td>/movies/:genre</td>
+                    <td>genre</td>
+                    <td>none</td>
+                    <td>A JSON object containing a description of the requested genre</td>
+                </tr>
+                <tr>
+                    <td scope="row">Return data about a director (bio, birth year, death year) by name</td>
+                    <td>GET</td>
+                    <td>/movies/directors/:name</td>
+                    <td>name</td>
+                    <td>none</td>
+                    <td>A JSON object containing data about the requested director</td>
+                </tr>
+                <tr>
+                    <td scope="row">Allow users to add a movie to their list of favorites</td>
+                    <td>POST</td>
+                    <td>/movies/:username/favorites</td>
+                    <td>none</td>
+                    <td>A JSON Object holding data about the movies to add to the favorites list</td>
+                    <td>A text message indicating the movie was successfully deleted from the favorites list</td>
+                </tr>
+                <tr>
+                    <td scope="row">Return the list of the users favorites movies.</td>
+                    <td>GET</td>
+                    <td>/movies/:username/favorites</td>
+                    <td>favorites</td>
+                    <td>None</td>
+                    <td>A JSON object contain data about list of favorites movies.</td>
+                </tr>
+                <tr>
+                    <td scope="row">Allow users to remove a movie to their list of favorites</td>
+                    <td>DELETE</td>
+                    <td>/movies/:username/favorites/:title</td>
+                    <td>favorites</td>
+                    <td>none</td>
+                    <td>A text message indicating the movie was successfully deleted from the favorites list</td>
+                </tr>
+        </table>
     </body>
 </html>
