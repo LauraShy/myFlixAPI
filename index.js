@@ -45,12 +45,24 @@ app.post('/users', (req, res) => {
     res.send('Successful registration of new user!')
 });
 
+//Allow users to update their user info
 
+//Allow existing users to deregister
 
 //Return a list of all movies
 app.get('/movies', (req, res) => {
     res.json(ourMovies);
 });
+
+//Return data about a single movie by title to the user
+
+//Return data about a genre (description) by name/title
+
+//Return data about a director (bio, birth year, death year) by name
+
+//Allow users to add a movie to their list of favorites
+
+//Allow users to remove a movie to their list of favorites
 
 
 
