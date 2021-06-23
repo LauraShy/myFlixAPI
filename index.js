@@ -30,8 +30,34 @@ let ourMovies = [
             name: 'Superhero',
             description: 'Films that focuses on the actions of superheroes: individuals who usually possess extraordinary – generally superhuman – abilities and are dedicated to protecting the public.'
         },
-        director: '',    
-    }
+        director: ''    
+    },
+    {
+        title: 'Fantastic Beasts',
+        description: 'A spinoff and prequel to Harry Potter- The adventures of writer Newt Scamander in New Yorks secret community of witches and wizards seventy years before Harry Potter reads his book in school',
+        genre: {
+            name: 'Fantasy',
+            description: 'Fantasy films are films with fantastic themes, usually magic, supernatural events, mythology, folklore, or exotic fantasy worlds.'
+        },
+        director: 'David Yates'
+    },
+    {
+        title: 'Lord of the Rings',
+        description: 'A meek Hobbit from the Shire and eight companions set out on a journey to destroy the powerful One Ring and save Middle-earth from the Dark Lord Sauron.',
+        genre: {
+            name: 'Fantasy',
+            description: 'Fantasy films are films with fantastic themes, usually magic, supernatural events, mythology, folklore, or exotic fantasy worlds.'
+        },
+        director: 'Peter Jackson'
+    },
+    {
+        title: 'Creed',
+        description: 'The former World Heavyweight Champion Rocky Balboa serves as a trainer and mentor to Adonis Johnson, the son of his late friend and former rival Apollo Creed.',
+        genre: {
+            name: 'Sports Drama',
+        },
+        director: 'Ryan Coogler'
+    },
 ]
 
 //Starting request
@@ -55,15 +81,38 @@ app.get('/movies', (req, res) => {
 });
 
 //Return data about a single movie by title to the user
+app.get('/movies/:title', (req, res) => {
+    res.json(movies.find((movie) =>
+      { return movies.title === req.params.title }));
+  });
 
 //Return data about a genre (description) by name/title
 
 //Return data about a director (bio, birth year, death year) by name
 
 //Allow users to add a movie to their list of favorites
+app.post('/movies/:username/favorites', (req, res) => {
+    let newMovie = req.body;
+  
+    if(!newMovie.title) {
+      const message = 'Missing "title" in request body';
+      res.status(400).send(message);
+    } else {
+      newMovie.id = uuid.v4();
+      movies.push(newMovie);
+      res.status(201).send(newMovie);
+    }
+  });
 
 //Allow users to remove a movie to their list of favorites
-
+app.delete('/movies/:username/favorites/:title', (req, res) => {
+    let movie = movies.find((movie) => { return movie.title === req.params.title });
+  
+    if (movie) {
+      movies = movies.filter((obj) => { return obj.title !== req.params.title });
+      res.status(201).send('Movie ' + req.params.title + ' was deleted.');
+    }
+  });
 
 
 // logging
