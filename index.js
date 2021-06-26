@@ -82,9 +82,9 @@ app.get('/movies', (req, res) => {
 
 //Return data about a single movie by title to the user
 app.get('/movies/:title', (req, res) => {
-    res.json(movies.find((movie) =>
-      { return movies.title === req.params.title }));
-  });
+    res.json(ourMovies.find((movie) =>
+      { return movie.title === req.params.title }));
+});
 
 //Return data about a genre (description) by name/title
 
@@ -99,20 +99,20 @@ app.post('/movies/:username/favorites', (req, res) => {
       res.status(400).send(message);
     } else {
       newMovie.id = uuid.v4();
-      movies.push(newMovie);
+      ourMovies.push(newMovie);
       res.status(201).send(newMovie);
     }
-  });
+});
 
 //Allow users to remove a movie to their list of favorites
 app.delete('/movies/:username/favorites/:title', (req, res) => {
-    let movie = movies.find((movie) => { return movie.title === req.params.title });
+    let movie = ourMovies.find((movie) => { return movie.title === req.params.title });
   
     if (movie) {
-      movies = movies.filter((obj) => { return obj.title !== req.params.title });
+      ourMovies = ourMovies.filter((obj) => { return obj.title !== req.params.title });
       res.status(201).send('Movie ' + req.params.title + ' was deleted.');
     }
-  });
+});
 
 
 // logging
