@@ -21,7 +21,10 @@ let ourMovies = [
             name: 'Fantasy',
             description: 'Fantasy films are films with fantastic themes, usually magic, supernatural events, mythology, folklore, or exotic fantasy worlds.'
         },
-        director: 'Chris Columbus, David Yates'
+        director: {
+			name:'Chris Joseph Columbus',
+			bio:' Born in 1958. Columbus was born in Spangler, Pennsylvania and raised in Champion, Ohio, the only child born to Mary Irene (née Puskar), a factory worker, and Alex Michael Columbus, an aluminum plant worker and coal miner.[2][3] He is of Italian and Czech descent.[4] As a child, he enjoyed drawing storyboards and began making 8mm films in high school'
+		}
     },
     {
         title: 'Avengers',
@@ -30,16 +33,22 @@ let ourMovies = [
             name: 'Superhero',
             description: 'Films that focuses on the actions of superheroes: individuals who usually possess extraordinary – generally superhuman – abilities and are dedicated to protecting the public.'
         },
-        director: ''    
+        director: {
+			name:'Joss Whedon',
+			bio: 'Born in 1964. He is an American film director, producer, writer, and composer. He is the founder of Mutant Enemy Productions, he co-founded Bellwether Pictures, and is best known as the creator of several television series.'
+		}   
     },
     {
         title: 'Fantastic Beasts',
-        description: 'A spinoff and prequel to Harry Potter- The adventures of writer Newt Scamander in New Yorks secret community of witches and wizards seventy years before Harry Potter reads his book in school',
+        description: 'A spinoff and prequel to Harry Potter- The adventures of writer Newt Scamander in New Yorks secret community of witches and wizards seventy years before Harry Potter reads his book in school.',
         genre: {
             name: 'Fantasy',
             description: 'Fantasy films are films with fantastic themes, usually magic, supernatural events, mythology, folklore, or exotic fantasy worlds.'
         },
-        director: 'David Yates'
+        director: {
+            name: 'David Yates',
+            bio: 'born8 October 1963) is an English film director who has directed films, short films, and television productions. He is best known for directing the later four films in the Harry Potter series and Fantastic Beasts.'
+        }
     },
     {
         title: 'Lord of the Rings',
@@ -48,15 +57,22 @@ let ourMovies = [
             name: 'Fantasy',
             description: 'Fantasy films are films with fantastic themes, usually magic, supernatural events, mythology, folklore, or exotic fantasy worlds.'
         },
-        director: 'Peter Jackson'
+        director: {
+            name: 'Peter Jackson',
+            bio: 'born 31 October 1961) is a New Zealand film director, producer, and screenwriter. He is best known as the director, writer, and producer of the Lord of the Rings and Hobbit trilogies.'
+        }
     },
     {
         title: 'Creed',
         description: 'The former World Heavyweight Champion Rocky Balboa serves as a trainer and mentor to Adonis Johnson, the son of his late friend and former rival Apollo Creed.',
         genre: {
             name: 'Sports Drama',
+            description: 'A type of drama whose source of conflict is the struggle of an athlete or team as they rise to the top of a chosen sport'
         },
-        director: 'Ryan Coogler'
+        director: {
+            name: 'Ryan Coogler',
+            bio: 'Ryan Coogler was born on May 23, 1986 in Oakland, California, USA as Ryan Kyle Coogler. He is a producer and director, known for Black Panther (2018), Creed (2015) and Fruitvale Station (2013). He has been married to Zinzi Coogler since 2016.'
+        }
     },
 ]
 
@@ -72,8 +88,19 @@ app.post('/users', (req, res) => {
 });
 
 //Allow users to update their user info
+app.put('/users/:username', (req, res) => {
+    res.status(201).send('User has changed their user information');	
+});
 
 //Allow existing users to deregister
+app.delete('/users/:username', (req, res) => {
+    let users = users.find((username) => { return users.username === req.params.username });
+  
+    if (username) {
+      users = users.filter((obj) => { return obj.username !== req.params.username });
+      res.status(201).send('User ' + req.params.username + ' was deleted.');
+    }
+});
 
 //Return a list of all movies
 app.get('/movies', (req, res) => {
@@ -87,8 +114,15 @@ app.get('/movies/:title', (req, res) => {
 });
 
 //Return data about a genre (description) by name/title
+app.get('/movie/:genre', (req, res) => {
+	res.json(ourMovies.find((movie) =>
+	{return movie.genre.description === req.params.genre.description}));
+});
 
 //Return data about a director (bio, birth year, death year) by name
+app.get('/movies/:director/:name', (req, res) => {
+	res.send('Successful GET request returning data information about the director');
+});
 
 //Allow users to add a movie to their list of favorites
 app.post('/movies/:username/favorites', (req, res) => {
