@@ -125,7 +125,7 @@ app.get('/movie/:genre', (req, res) => {
 //Return data about a director (bio, birth year, death year) by name
 app.get('/movies/:director/:name', (req, res) => {
 	res.json(ourMovies.find((movie) =>
-      { return movie.director.bio === req.params.director.title }));
+      { return movie.director.bio === req.params.director.bio }));
 });
 
 //Allow users to add a movie to their list of favorites
