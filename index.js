@@ -93,14 +93,17 @@ app.put('/users/:username', (req, res) => {
 });
 
 //Allow existing users to deregister
-app.delete('/users/:username', (req, res) => {
+app.get('/users/:username/delete', function(req, res) {
+    res.send('Successfully deleted user account');
+});
+/* app.delete('/users/:username', (req, res) => {
     let users = users.find((username) => { return users.username === req.params.username });
   
     if (username) {
       users = users.filter((obj) => { return obj.username !== req.params.username });
       res.status(201).send('User ' + req.params.username + ' was deleted.');
     }
-});
+}); */
 
 //Return a list of all movies
 app.get('/movies', (req, res) => {
@@ -116,12 +119,13 @@ app.get('/movies/:title', (req, res) => {
 //Return data about a genre (description) by name/title
 app.get('/movie/:genre', (req, res) => {
 	res.json(ourMovies.find((movie) =>
-	{return movie.genre.description === req.params.genre.description}));
+	{ return movie.genre.description === req.params.genre.description }));
 });
 
 //Return data about a director (bio, birth year, death year) by name
 app.get('/movies/:director/:name', (req, res) => {
-	res.send('Successful GET request returning data information about the director');
+	res.json(ourMovies.find((movie) =>
+      { return movie.director.bio === req.params.director.title }));
 });
 
 //Allow users to add a movie to their list of favorites
