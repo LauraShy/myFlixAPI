@@ -22,13 +22,13 @@ let ourMovies = [
             description: 'Fantasy films are films with fantastic themes, usually magic, supernatural events, mythology, folklore, or exotic fantasy worlds.'
         },
         director: {
-			name:'Chris Joseph Columbus',
+			name:'Chris Columbus',
 			bio:' Born in 1958. Columbus was born in Spangler, Pennsylvania and raised in Champion, Ohio, the only child born to Mary Irene (née Puskar), a factory worker, and Alex Michael Columbus, an aluminum plant worker and coal miner.[2][3] He is of Italian and Czech descent.[4] As a child, he enjoyed drawing storyboards and began making 8mm films in high school'
 		}
     },
     {
         title: 'Avengers',
-		description:'The director of the agency S.H.I.E.L.D., Nick Fury, sets in motion project Avengers, joining Tony Stark a.k.a. the Iron Man; Steve Rogers, a.k.a. Captain America; Bruce Banner, a.k.a. The Hulk; Thor; Natasha Romanoff, a.k.a. Black Widow; and Clint Barton, a.k.a. Hawkeye, to save the world from the powerful Loki and the alien invasion.',
+		description:'The director of the agency S.H.I.E.L.D., Nick Fury, sets in motion project Avengers, joining the Iron Man, Captain America, The Hulk, Thor, Black Widow, and Hawkeye, to save the world from the powerful Loki and the alien invasion.',
 		genre: {
             name: 'Superhero',
             description: 'Films that focuses on the actions of superheroes: individuals who usually possess extraordinary – generally superhuman – abilities and are dedicated to protecting the public.'
@@ -71,7 +71,7 @@ let ourMovies = [
         },
         director: {
             name: 'Ryan Coogler',
-            bio: 'Ryan Coogler was born on May 23, 1986 in Oakland, California, USA as Ryan Kyle Coogler. He is a producer and director, known for Black Panther (2018), Creed (2015) and Fruitvale Station (2013). He has been married to Zinzi Coogler since 2016.'
+            bio: 'Ryan Coogler is a producer and director, known for Black Panther, Creed and Fruitvale Station. His first feature film, Fruitvale Station, won the top audience and grand jury awards at the 2013 Sundance Film Festival.'
         }
     },
 ]
@@ -117,15 +117,13 @@ app.get('/movies/:title', (req, res) => {
 });
 
 //Return data about a genre (description) by name/title
-app.get('/movie/:genre', (req, res) => {
-	res.json(ourMovies.find((movie) =>
-	{ return movie.genre.description === req.params.genre.description }));
+app.get('/movies/genres/:genre', function (req, res) {
+    res.send('Get request to genre!');
 });
 
 //Return data about a director (bio, birth year, death year) by name
-app.get('/movies/:director/:name', (req, res) => {
-	res.json(ourMovies.find((movie) =>
-      { return movie.director.bio === req.params.director.bio }));
+app.get('/directors/:name', function (req, res) {
+    res.send('Get Request to director');
 });
 
 //Allow users to add a movie to their list of favorites
