@@ -191,6 +191,18 @@ app.get('/movies', (req, res) => {
     });
 });
 
+//Return a list of all genres
+app.get('/genres', (req, res) => {
+  Genres.find()
+    .then((genres) => {
+      res.status(201).json(genres);
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send('Error: ' + err);
+    });
+});
+
 //Return a list of all directors
 app.get('/directors', (req, res) => {
   Directors.find()
