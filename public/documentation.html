@@ -62,21 +62,36 @@
                     <td>POST</td>
                     <td>/users</td>
                     <td>none</td>
-                    <td>A JSON object holding data about the user to register</td>
-                    <td>A JSON object containing data about the user that was registered</td>
+                        "Name" : "Name",<br>
+                    <td>A JSON object holding data about the user to register<br>e.g.<br>
+                        { Username: String,<br>
+                          Password: String,<br>
+                          Email: String,<br>
+                          Birthday: Date }
+                    </td>
+                    <td>A JSON object containing data about the user that was registered<br>e.g.<br>
+                        { "Username": "Username",<br>
+                        "Password": "Password",<br>
+                        "Email": "Email@email.com",<br>
+                        "Birthday": "1990-01-01" }
+                    </td>
                 </tr>
                 <tr>
                     <td scope="row">Allow users to update their user info </td>
                     <td>PUT</td>
-                    <td>/users/:username</td>
+                    <td>/users/:Username</td>
                     <td>username</td>
-                    <td>A JSON object holding the new data about the user to register</td>
+                    <td>A JSON object holding the new data about the user to register<br>e.g.<br>
+                        { Username: String,<br>
+                          Password: String,<br>
+                          Email: String,<br>
+                          Birthday: Date }</td>
                     <td>A text message indicating the user info was successfully updated</td>
                 </tr>
                 <tr>
                     <td scope="row">Allow existing users to deregister</td>
                     <td>DELETE</td>
-                    <td>/users/:username</td>
+                    <td>/users/:Username</td>
                     <td>username</td>
                     <td>none</td>
                     <td>A text message indicating the user was successfully deregistered</td>
@@ -87,36 +102,77 @@
                     <td>/movies</td>
                     <td>none</td>
                     <td>none</td>
-                    <td>A JSON object containing data about all the movies</td>
+                    <td>A JSON object containing data about all movies</td>
+                </tr>
+                <tr>
+                    <td scope="row">Return a list of all the genres to the users</td>
+                    <td>GET</td>
+                    <td>/genres</td>
+                    <td>none</td>
+                    <td>none</td>
+                    <td>A JSON object containing data about all genres</td>
+                </tr>
+                <tr>
+                    <td scope="row">Return a list of all the directors to the users</td>
+                    <td>GET</td>
+                    <td>/directors</td>
+                    <td>none</td>
+                    <td>none</td>
+                    <td>A JSON object containing data about all directors</td>
+                </tr>
+                <tr>
+                    <td scope="row">Return a list of all users</td>
+                    <td>GET</td>
+                    <td>/users</td>
+                    <td>none</td>
+                    <td>none</td>
+                    <td>A JSON object containing data about all users</td>
                 </tr>
                 <tr>
                     <td scope="row">Return data about a single movie by title to the user</td>
                     <td>GET</td>
-                    <td>/movies/:title</td>
+                    <td>/movies/:Title</td>
                     <td>title</td>
                     <td>none</td>
-                    <td>A JSON object containing data (description, genre, director, image URL, whether it’s featured or not) about the movie</td>
+                    <td>A JSON object containing data (description, genre, director, image URL, whether it’s featured or not) about the movie<br> e.g. <br>
+                        { "_id" : ObjectId,<br>
+                        "Title" : "Title",<br>
+                        "Description" : "Description",<br>
+                        "Genre" : "Genre",<br>
+                        "Director" : "Director",<br>
+                        "imageUrl" : "imageUrl",<br>
+                        "Featured" : "true"}
+                    </td>
                 </tr>
                 <tr>
                     <td scope="row">Return data about a genre (description) by name/title</td>
                     <td>GET</td>
-                    <td>/movies/:genre</td>
+                    <td>/genres/:Name</td>
                     <td>genre</td>
                     <td>none</td>
-                    <td>A JSON object containing a description of the requested genre</td>
+                    <td>A JSON object containing a description of the requested genre<br>e.g.<br>
+                        { "_id" : "ObjectId",<br>
+                        "Name" : "Name",<br>
+                        "Description" : "Description" }
+                    </td>
                 </tr>
                 <tr>
                     <td scope="row">Return data about a director (bio, birth year, death year) by name</td>
                     <td>GET</td>
-                    <td>/movies/directors/:name</td>
+                    <td>/directors/:Name</td>
                     <td>name</td>
                     <td>none</td>
-                    <td>A JSON object containing data about the requested director</td>
+                    <td>A JSON object containing data about the requested director<br>e.g.<br>
+                        { "_id" : "ObjectId",<br>
+                        "Name" : "Name",<br>
+                        "Bio" : "Bio",<br>
+                        "Birthday" : "1986-01-01" }
+                    </td>
                 </tr>
                 <tr>
                     <td scope="row">Allow users to add a movie to their list of favorites</td>
                     <td>POST</td>
-                    <td>/movies/:username/favorites</td>
+                    <td>/user/:Username/favorites</td>
                     <td>favorites</td>
                     <td>A JSON Object holding data about the movies to add to the favorites list</td>
                     <td>A text message indicating the movie was successfully added from the favorites list</td>
@@ -124,8 +180,8 @@
                 <tr>
                     <td scope="row">Allow users to remove a movie to their list of favorites</td>
                     <td>DELETE</td>
-                    <td>/movies/:username/favorites/:title</td>
-                    <td>favorites</td>
+                    <td>/users/:Username/Movies/:MovieID</td>
+                    <td>none</td>
                     <td>none</td>
                     <td>A text message indicating the movie was successfully deleted from the favorites list</td>
                 </tr>
