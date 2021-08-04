@@ -25,7 +25,7 @@ let userSchema = mongoose.Schema({
 });
 
 /* I typed out potential Schema for the other collections just in case it's needed. Tried using it but it said Something Broke! with a 500 err */
-/*  
+  
 let genreSchema = mongoose.Schema({
     Name: {type: String},
     Description: {type: String}
@@ -35,14 +35,14 @@ let directorSchema = mongoose.Schema({
     Name: {type: String},
     Bio: {type: String},
     Birthday: Date,
-}); */
+}); 
 
 let Movie = mongoose.model('Movie', movieSchema);
 let User = mongoose.model('User', userSchema);
-/* let Genre = mongoose.model('Genre', genreSchema);
-let Director = mongoose.model('Director', directorSchema); */
+let Genre = mongoose.model('Genre', genreSchema);
+let Director = mongoose.model('Director', directorSchema);
 
 module.exports.Movie = Movie;
 module.exports.User = User;
-/* module.exports.Genre = Genre; 
-module.exports.Director = Director;*/
+module.exports.Genre = Genre; 
+module.exports.Director = Director;

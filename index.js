@@ -3,6 +3,8 @@ const Models = require('./models.js');
 
 const Movies = Models.Movie;
 const Users = Models.User;
+const Genres = Models.Genre;
+const Directors = Models.Director;
 
 mongoose.connect('mongodb://localhost:27017/myFlixDB', { useNewUrlParser: true, useUnifiedTopology: true });
 
