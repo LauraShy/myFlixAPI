@@ -17,8 +17,6 @@ let userSchema = mongoose.Schema({
     Birthday: Date,
     FavoriteMovies: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Movie'}]
 });
-
-/* I typed out potential Schema for the other collections just in case it's needed. Tried using it but it said Something Broke! with a 500 err */
   
 let genreSchema = mongoose.Schema({
     Name: {type: String},
