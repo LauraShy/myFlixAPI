@@ -14,7 +14,10 @@ const express = require('express'),
 const { parse } = require('uuid');
         
 const app = express();
-  
+
+const cors = require('cors');
+app.use(cors());
+
 app.use(bodyParser.json());   
 app.use(bodyParser.urlencoded({ extended: true }));
 // Should I be using that instead? Not sure where this extended code came from, but saw a student added it to theirs so I did too
@@ -39,6 +42,7 @@ app.get('/', (req, res) => {
 
 //Allow new users to register
 app.post('/users', (req, res) => {
+  let hashedPassword = Users.hashPassword(req.body.Password)
   Users.findOne({ Username: req.body.Username })
     .then((user) => {
       if (user) {
@@ -47,7 +51,7 @@ app.post('/users', (req, res) => {
         Users
           .create({
             Username: req.body.Username,
-            Password: req.body.Password,
+            Password: hashedPassword,
             Email: req.body.Email,
             Birthday: req.body.Birthday
           })
