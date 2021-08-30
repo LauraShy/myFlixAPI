@@ -26,6 +26,23 @@ let auth = require('./auth')(app);
 const passport = require('passport');
 require('./passport');
 
+//Set allowed Origins
+let allowedOrigins = [
+  "http://localhost:1234",
+  "https://myflixapplication.herokuapp.com/"
+];
+
+app.use(cors({
+  origin: (origin, callback) => {
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.indexOf(origin) === -1) { //If a specific origin isn’t found on the list
+      let message = 'The CORS policy for this application doesn`t allow accsess from origin ' + origin;
+      return callback(new Error(message), false);
+    }
+    return callback(null, true);
+  }
+}));
+
 //Get documentation
 
 app.get('/documentation.html', passport.authenticate('jwt', { session: false }), (req, res) => {
@@ -224,32 +241,6 @@ app.get('/movies/director/:Name', passport.authenticate('jwt', { session: false 
       res.status(500).send('Error: ' + err);
     });
 });
-
-/*
-//Return a list of all genres
-app.get('/genres', passport.authenticate('jwt', { session: false }), (req, res) => {
-  Genres.find()
-    .then((genres) => {
-      res.status(201).json(genres);
-    })
-    .catch((err) => {
-      console.error(err);
-      res.status(500).send('Error: ' + err);
-    });
-});
-
-//Return a list of all directors
-app.get('/directors', passport.authenticate('jwt', { session: false }), (req, res) => {
-  Directors.find()
-    .then((directors) => {
-      res.status(201).json(directors);
-    })
-    .catch((err) => {
-      console.error(err);
-      res.status(500).send('Error: ' + err);
-    });
-});
-*/
 
 // logging
 app.use(morgan('common'));
