@@ -16,6 +16,7 @@ const Users = Models.User;
 mongoose.connect( process.env.CONNECTION_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 
 const cors = require('cors');
+app.use(cors());
 
 app.use(bodyParser.json());   
 app.use(bodyParser.urlencoded({ extended: true })); // Should I be using that instead of the previous line? It suddenly appeared updated to this slightly longer code in one task
