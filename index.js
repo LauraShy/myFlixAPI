@@ -29,7 +29,8 @@ require('./passport');
 //Set allowed Origins
 let allowedOrigins = [
   "http://localhost:1234",
-  "https://myflixapplication.herokuapp.com/"
+  "https://myflixapplication.herokuapp.com/",
+  "https://myflix-application-client.netlify.app/"
 ];
 
 app.use(cors({
