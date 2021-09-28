@@ -249,8 +249,8 @@ app.use(morgan('common'));
 
 // Error Handling
 app.use((err, req, res, next) => {
-    console.error(err.stack);
-    res.status(500).send('Something broke!');
+  console.error(err.stack);
+  res.status(500).send('Something broke: ' + err.toString());
 });
 
 // listen for requests
