@@ -33,5 +33,5 @@ Return a list of all the movies           |GET     |/movies          |none      
 Return data about a single movie by title |GET     |/movies/:Title   |title        |none       |A JSON object containing data (description, genre, director, image URL, whether it’s featured or not) about the movie
 Return data about a genre (description) by name/title |GET |/movies/genres/:Name |genre |none |A JSON object containing a description of the requested genre
 Return data about a director (bio, birth year, death year) by name |GET |/movies/directors/:Name |name |none |A JSON object containing data about the requested director
-Allow users to add a movie to their list of favorites |POST |/user/:Username/favorites |favorites |A JSON Object holding data about the movies to add to the favorites list |A message indicating the movie was successfully added from the favorites list
+Allow users to add a movie to their list of favorites |POST |/users/:Username/Movies/:MovieID | none |A JSON Object holding data about the movies to add to the favorites list |A message indicating the movie was successfully added from the favorites list
 Allow users to remove a movie to their list of favorites |DELETE |/users/:Username/Movies/:MovieID |none |none |A message indicating the movie was successfully deleted from the favorites list
