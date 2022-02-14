@@ -33,7 +33,8 @@ let allowedOrigins = [
   "http://localhost:1234",
   "http://localhost:4200",
   "https://myflixapplication.herokuapp.com",
-  "https://myflix-application-client.netlify.app"
+  "https://myflix-application-client.netlify.app",
+  "https://laurashy.github.io/myFlix-Angular"
 ];
 
 /**
